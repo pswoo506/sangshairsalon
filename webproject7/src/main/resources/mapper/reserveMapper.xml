@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.scmaster.web7.reserve.dao.ReserveMapper">
+
+	<insert id="reservation" parameterType="reserve">
+		insert into reservation (
+   		reservenum
+   		, reservedate
+   		, hairstyle
+   		, id
+   		, designer
+   		, reservetime
+   		, requesttext
+		)values(
+   		reservation_seq.nextval
+   		, #{reservedate}
+   		, #{hairstyle}
+   		, #{id}
+   		, #{designer}
+   		, #{reservetime}
+   		, #{requesttext}   		
+		)
+	</insert>
+
+	<select id="selectOne" parameterType="String" resultType="reserve">
+		select *
+		from reservation
+		where id=#{id}
+		order by reservedate desc
+	</select>
+	
+</mapper>

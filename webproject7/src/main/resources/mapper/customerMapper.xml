@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.scmaster.web7.customer.dao.CustomerMapper">
+	<select id="searchCustomerOne" parameterType="String" resultType="customer">
+		select 
+			id
+			,password
+			,name
+			,email
+			,phonenum			
+			,address
+		from
+			customer
+		where
+			id=#{id}
+	</select>
+	<insert id="joinCustomer" parameterType="customer">
+	insert into
+		customer
+		(
+			id
+			,password
+			,name
+			,email
+			,phonenum			
+			,address
+		)values(
+			#{id}
+			,#{password}
+			,#{name}
+			,#{email}			
+			,#{phonenum}
+			,#{address}
+		)
+		
+	</insert>		
+		<update id="updateCustomer" parameterType="customer">
+		update
+			customer
+		set
+			<if test="password != ''">
+				password = #{password},
+			</if>			
+			name = #{name}
+			,email = #{email}
+			,phonenum = #{phonenum}			
+			,address = #{address}
+		where
+			id = #{id}
+	</update>	
+</mapper>
